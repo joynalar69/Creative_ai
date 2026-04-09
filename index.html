@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>ক্রিয়েটিভ এআই ইন্সটিটিউট | ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষ</title>
+  <!-- Google Fonts & Font Awesome Icons for professional look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Library for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefaf8;
+      color: #1e2a3e;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1e8e5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #EB5330;
+      border-radius: 10px;
+    }
+
+    /* header with gradient & animation */
+    .hero {
+      background: linear-gradient(135deg, #EB5330 0%, #c23d1c 100%);
+      color: white;
+      padding: 60px 20px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      animation: fadeSlideUp 0.8s ease-out;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      max-width: 650px;
+      margin: 0 auto;
+      animation: fadeSlideUp 0.8s ease-out 0.1s backwards;
+    }
+
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero::after {
+      content: "⚡";
+      font-size: 140px;
+      opacity: 0.08;
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      pointer-events: none;
+      transform: rotate(-8deg);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* announcement banner */
+    .announcement {
+      background: #fff3e9;
+      border-left: 6px solid #EB5330;
+      border-radius: 20px;
+      padding: 20px 28px;
+      margin: -40px auto 40px auto;
+      max-width: 1000px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      backdrop-filter: blur(2px);
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      animation: fadeSlideUp 0.6s ease-out 0.2s backwards;
+    }
+
+    .announcement:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 40px -14px rgba(235, 83, 48, 0.2);
+    }
+
+    .announcement p {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #c23d1c;
+    }
+
+    .announcement span {
+      font-weight: 800;
+      background: #EB5330;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin-left: 12px;
+    }
+
+    /* section headings */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1e2a3e;
+      margin: 60px 0 24px 0;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: #EB5330;
+      border-radius: 4px;
+    }
+
+    /* course grid - modern cards with hover */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 28px;
+      padding: 24px 20px;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+      border: 1px solid #ffe2d8;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 35px -12px rgba(235, 83, 48, 0.25);
+      border-color: #EB5330;
+      background: #ffffff;
+    }
+
+    .course-icon {
+      background: #fef1ec;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 32px;
+      margin: 0 auto 20px;
+      transition: 0.3s;
+      color: #EB5330;
+    }
+
+    .course-card:hover .course-icon {
+      background: #EB5330;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .course-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .course-card p {
+      font-size: 0.9rem;
+      color: #5a6e7c;
+    }
+
+    /* features list with icons */
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin: 30px 0 40px;
+    }
+
+    .feature-item {
+      flex: 1 1 280px;
+      background: white;
+      padding: 22px 20px;
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: 0.25s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid #f0e2db;
+    }
+
+    .feature-item i {
+      font-size: 32px;
+      color: #EB5330;
+      background: #fff0ea;
+      padding: 12px;
+      border-radius: 20px;
+    }
+
+    .feature-item span {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* contact & social section - unified box style */
+    .contact-wrapper {
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 30px 30px;
+      margin: 40px 0 50px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      border: 1px solid #ffe0d4;
+    }
+
+    /* UNIFIED BOXES: website, facebook, telegram, email all same style */
+    .social-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 22px;
+      margin: 28px 0 24px;
+    }
+
+    .social-card {
+      background: #fefaf8;
+      border-radius: 24px;
+      text-align: center;
+      padding: 20px 12px;
+      transition: all 0.3s;
+      border: 1px solid #fee0d4;
+      text-decoration: none;
+      color: #2d3e50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .social-card i {
+      font-size: 32px;
+      transition: 0.2s;
+    }
+
+    .social-card:hover {
+      background: #EB5330;
+      color: white;
+      transform: translateY(-6px);
+      border-color: #EB5330;
+      box-shadow: 0 15px 25px -12px rgba(235,83,48,0.4);
+    }
+
+    .social-card:hover i {
+      color: white;
+      transform: scale(1.02);
+    }
+
+    /* email box same style - we add an extra email card */
+    .email-card {
+      background: #fefaf8;
+      border-radius: 24px;
+      text-align: center;
+      padding: 20px 12px;
+      transition: all 0.3s;
+      border: 1px solid #fee0d4;
+      text-decoration: none;
+      color: #2d3e50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .email-card i {
+      font-size: 32px;
+      color: #EB5330;
+    }
+
+    .email-card:hover {
+      background: #EB5330;
+      color: white;
+      transform: translateY(-6px);
+      border-color: #EB5330;
+    }
+    .email-card:hover i {
+      color: white;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: space-between;
+      background: #fdf6f2;
+      border-radius: 30px;
+      padding: 24px 28px;
+      margin-top: 30px;
+    }
+
+    .contact-details div {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-details i {
+      font-size: 24px;
+      color: #EB5330;
+    }
+
+    .address {
+      font-weight: 500;
+      background: #ffffff;
+      padding: 8px 18px;
+      border-radius: 40px;
+    }
+
+    /* CTA button styling */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #EB5330;
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      border-radius: 60px;
+      font-weight: 700;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 20px -6px rgba(235,83,48,0.5);
+      letter-spacing: 0.3px;
+    }
+
+    .cta-btn i {
+      font-size: 1.2rem;
+    }
+
+    .cta-btn:hover {
+      background: #b93f20;
+      transform: scale(1.03);
+      box-shadow: 0 12px 24px -8px rgba(235,83,48,0.7);
+    }
+
+    footer {
+      background: #1e2a3e;
+      color: #cddfe7;
+      text-align: center;
+      padding: 32px 20px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(235,83,48,0.4); }
+      70% { box-shadow: 0 0 0 12px rgba(235,83,48,0); }
+      100% { box-shadow: 0 0 0 0 rgba(235,83,48,0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+      .announcement p {
+        font-size: 1rem;
+      }
+      .contact-details {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .social-card, .email-card {
+        font-size: 0.95rem;
+        padding: 16px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>ক্রিয়েটিভ এআই ইন্সটিটিউট</h1>
+  <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+</header>
+
+<div class="container">
+  <!-- animated announcement -->
+  <div class="announcement" data-aos="fade-up" data-aos-duration="700">
+    <p>📢 ভর্তি চলছে &nbsp;👉 <span>সীমিত আসন</span> &nbsp; আজই ভর্তি নিশ্চিত করুন</p>
+  </div>
+
+  <!-- Courses section -->
+  <h2 class="section-title" data-aos="fade-right">আমাদের কোর্সসমূহ</h2>
+  <div class="courses-grid" data-aos="fade-up" data-aos-delay="100">
+    <div class="course-card">
+      <div class="course-icon">💻</div>
+      <h3>বেসিক অফিস</h3>
+      <p>MS Word, Excel, PowerPoint</p>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">📊</div>
+      <h3>প্রফেশনাল অফিস</h3>
+      <p>অ্যাডভান্সড এক্সেল, প্রেজেন্টেশন</p>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">🎨</div>
+      <h3>গ্রাফিক্স ডিজাইন</h3>
+      <p>Photoshop, Illustrator</p>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">🌐</div>
+      <h3>ওয়েব ডিজাইন ও ডেভেলপমেন্ট</h3>
+      <p>HTML, CSS, JS, WordPress</p>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">📱</div>
+      <h3>ডিজিটাল মার্কেটিং</h3>
+      <p>Facebook Ads, Google Ads, SEO</p>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">🤖</div>
+      <h3>ক্রিয়েটিভ এ.আই</h3>
+      <p>এডভান্সড এআই এর ব্যবহার</p>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">📘</div>
+      <h3>এইচএসসি আইসিটি</h3>
+      <p>সম্পূর্ণ সিলেবাস ও বোর্ড প্রস্তুতি</p>
+    </div>
+    <div class="course-card">
+      <div class="course-icon">🏫</div>
+      <h3>একাডেমিক কোচিং</h3>
+      <p>স্কুল ও কলেজ শিক্ষার্থীদের জন্য</p>
+    </div>
+  </div>
+
+  <!-- Our specialties with better animation -->
+  <h2 class="section-title" data-aos="fade-right">⭐ আমাদের বিশেষত্ব</h2>
+  <div class="features-grid" data-aos="fade-up" data-aos-delay="50">
+    <div class="feature-item"><i class="fas fa-chalkboard-teacher"></i><span>✔ ফ্রি ডেমো ক্লাস করার সুযোগ</span></div>
+    <div class="feature-item"><i class="fas fa-user-tie"></i><span>✔ অভিজ্ঞ ও দক্ষ প্রশিক্ষক</span></div>
+    <div class="feature-item"><i class="fas fa-project-diagram"></i><span>✔ ফ্রীলান্সারদের সাথে রিয়েল প্রজেক্ট</span></div>
+    <div class="feature-item"><i class="fas fa-laptop-code"></i><span>✔ হাতে-কলমে প্র্যাকটিক্যাল প্রশিক্ষণ</span></div>
+    <div class="feature-item"><i class="fas fa-certificate"></i><span>✔ সরকার অনুমোদিত সার্টিফিকেট ও চাকরির সুযোগ</span></div>
+    <div class="feature-item"><i class="fas fa-chart-line"></i><span>✔ ফ্রিল্যান্সিং ও ক্যারিয়ার গাইডলাইন</span></div>
+  </div>
+
+  <!-- contact & social professional area with UNIFIED boxes for Website, FB, Telegram, and Email -->
+  <div class="contact-wrapper" data-aos="zoom-in-up" data-aos-duration="800">
+    <h3 style="font-size: 1.8rem; font-weight: 700; color: #EB5330; margin-bottom: 12px;">যোগাযোগ ও লিংক</h3>
+    <p style="margin-bottom: 20px;">সাথে থাকুন সর্বাধুনিক ডিজিটাল যাত্রায় — নিচের মাধ্যমগুলোতে যোগাযোগ করুন।</p>
+
+    <!-- Four identical style boxes: Website, Facebook, Telegram, Email -->
+    <div class="social-links">
+      <a href="https://creativeaiinstitute.blogspot.com" target="_blank" class="social-card">
+        <i class="fas fa-globe"></i> ওয়েবসাইট
+      </a>
+      <a href="https://www.facebook.com/share/17eVQiakV6/" target="_blank" class="social-card">
+        <i class="fab fa-facebook-f"></i> ফেসবুক
+      </a>
+      <a href="https://t.me/creativeaibd01" target="_blank" class="social-card">
+        <i class="fab fa-telegram-plane"></i> টেলিগ্রাম
+      </a>
+      <!-- Email as same style box (opens mail client) -->
+      <a href="mailto:creativeaibd01@gmail.com" class="social-card">
+        <i class="fas fa-envelope"></i> ইমেইল
+      </a>
+    </div>
+
+    <!-- Phone & address details (kept clean) -->
+    <div class="contact-details">
+      <div><i class="fas fa-phone-alt"></i> <strong>📞 01679338669</strong> &nbsp;|&nbsp; <strong>+8801632791981</strong> &nbsp;|&nbsp; <strong>01407774872</strong></div>
+      <div class="address"><i class="fas fa-map-marker-alt"></i> ভান্ডারী মহল, আল-আমিন ম্যানসন (২য় তলা), ফরিদগঞ্জ, চাঁদপুর</div>
+    </div>
+
+    <!-- CTA Button: "Get admitted now" linking to the website (same as website link) 
+         And changed text to appropriate admission CTA in both Bangla+English vibe -->
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="https://creativeaiinstitute.blogspot.com" target="_blank" class="cta-btn" style="animation: pulseGlow 1.8s infinite;">
+        <i class="fas fa-graduation-cap"></i>Get Admitted Now
+      </a>
+      <p style="margin-top: 16px; font-size: 0.85rem; color: #5a6e7c;">সীমিত আসন — আপনার ক্যারিয়ার শুরু হোক আজই</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© ২০২৬ ক্রিয়েটিভ এআই ইন্সটিটিউট — ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+  <p style="margin-top: 12px; font-size: 0.8rem;">📌 ফ্রি ডেমো ক্লাস | সার্টিফিকেট ও ক্যারিয়ার গাইডলাইন</p>
+</footer>
+
+<!-- AOS script for scroll animations -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    offset: 60,
+    easing: 'ease-out-quad'
+  });
+  // optional micro-interaction
+  const courseCards = document.querySelectorAll('.course-card');
+  courseCards.forEach(card => {
+    card.addEventListener('click', () => {
+      // just for user engagement feel
+      console.log('Explore course');
+    });
+  });
+</script>
+</body>
+</html>
