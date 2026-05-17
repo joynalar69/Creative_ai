@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বেসিক অফিস কোর্স | Creative AI Institute</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* অতিরিক্ত কাস্টম স্টাইল */
+        .module-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+        .module-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(46,46,255,0.15);
+        }
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .module-title i {
+            font-size: 2rem;
+        }
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .class-item {
+            background: var(--primary-light);
+            padding: 12px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        .class-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .class-item i {
+            font-size: 18px;
+            color: var(--primary);
+        }
+        .class-item:hover i {
+            color: white;
+        }
+        .class-number {
+            font-weight: 700;
+            min-width: 60px;
+        }
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+        .topic-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .topic-list li i {
+            color: var(--primary);
+            margin-top: 3px;
+        }
+        .project-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 5px 5px 0 0;
+        }
+        .keyboard-table {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .keyboard-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .keyboard-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+        }
+        .keyboard-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .keyboard-table tr:hover {
+            background: var(--primary-light);
+        }
+        .duration-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+        .info-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .info-item {
+            background: var(--primary-light);
+            padding: 12px 25px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+			color: #2e2eff;
+        }
+        .info-item i {
+            font-size: 20px;
+            color: var(--primary);
+        }
+        .typing-practice {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .bangla-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+        }
+        .section-tab {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+			margin-top: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.3s;
+            border-radius: 30px;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo" onclick="location.href='../index.html'">
+                <img src="../image/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/50/2E2EFF/white?text=CAI'">
+                <div class="logo-text">
+                    <h1>ক্রিয়েটিভ এআই ইন্সটিটিউট</h1>
+                    <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html"><i class="fas fa-home"></i> হোম</a>
+                <a href="../certificate.html"><i class="fas fa-certificate"></i> সার্টিফিকেট</a>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fas fa-book-open"></i> সকল কোর্স <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="kids-computer.html"><i class="fas fa-child"></i> কিডস কম্পিউটার</a>
+                        <a href="basic-office.html"><i class="fas fa-laptop"></i> বেসিক অফিস</a>
+                        <a href="professional-office.html"><i class="fas fa-chart-line"></i> প্রফেশনাল অফিস</a>
+                        <a href="graphic-design.html"><i class="fas fa-palette"></i> গ্রাফিক্স ডিজাইন</a>
+                        <a href="web-development.html"><i class="fas fa-code"></i> ওয়েব ডিজাইন ও ডেভেলপমেন্ট</a>
+                        <a href="digital-marketing.html"><i class="fas fa-bullhorn"></i> ডিজিটাল মার্কেটিং</a>
+                        <a href="professional-ai.html"><i class="fas fa-robot"></i> প্রফেশনাল এ.আই</a>
+                        <a href="academic-coaching.html"><i class="fas fa-chalkboard-user"></i> একাডেমিক কোচিং</a>
+                        <a href="hsc-ict.html"><i class="fas fa-book"></i> এইচএসসি আইসিটি</a>
+                        <a href="hand-writing.html"><i class="fas fa-pen-fancy"></i> হ্যান্ড রাইটিং</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- কোর্স হিরো সেকশন -->
+<section class="course-detail-hero">
+    <div class="container">
+        <h1><i class="fas fa-laptop-code"></i> বেসিক অফিস কোর্স</h1>
+        <p>MS Word, MS Excel, MS PowerPoint - অফিসের কাজ শিখুন পেশাদারভাবে</p>
+        <div class="info-bar">
+            <div class="info-item"><i class="fas fa-clock"></i> মেয়াদ: ৩ মাস</div>
+            <div class="info-item"><i class="fas fa-calendar-alt"></i> মোট ক্লাস: ৩৬টি</div>
+            <div class="info-item"><i class="fas fa-users"></i> ব্যাচ: সকাল ও সন্ধ্যা</div>
+            <div class="info-item"><i class="fas fa-certificate"></i> সার্টিফিকেট: সরকার অনুমোদিত</div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- ট্যাব সেকশন -->
+    <div class="section-tab">
+        <button class="tab-btn active" onclick="showTab('overview')"><i class="fas fa-info-circle"></i> কোর্স ওভারভিউ</button>
+        <button class="tab-btn" onclick="showTab('modules')"><i class="fas fa-book"></i> কোর্স মডিউল</button>
+        <button class="tab-btn" onclick="showTab('projects')"><i class="fas fa-project-diagram"></i> প্রজেক্ট সমূহ</button>
+        <button class="tab-btn" onclick="showTab('typing')"><i class="fas fa-keyboard"></i> টাইপিং প্র্যাকটিস</button>
+    </div>
+
+    <!-- ট্যাব 1: কোর্স ওভারভিউ -->
+    <div id="overview" class="tab-content active">
+        <div class="course-detail-card">
+            <div class="course-overview">
+                <div class="overview-item"><i class="fas fa-clock"></i><h4>কোর্স ডিউরেশন</h4><p>৩ মাস</p></div>
+                <div class="overview-item"><i class="fas fa-chalkboard"></i><h4>মোট ক্লাস</h4><p>৩৬টি</p></div>
+                <div class="overview-item"><i class="fas fa-clock"></i><h4>ক্লাস সময়</h4><p>সকাল ১০টা - ১২টা / সন্ধ্যা ৭টা - ৯টা</p></div>
+                <div class="overview-item"><i class="fas fa-certificate"></i><h4>সার্টিফিকেট</h4><p>সরকার অনুমোদিত</p></div>
+            </div>
+            
+            <div class="course-benefits">
+                <h3><i class="fas fa-gem"></i> এই কোর্সে যা শিখবেন</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> কম্পিউটার বেসিক থেকে শুরু করে অ্যাডভান্সড টাইপিং</li>
+                    <li><i class="fas fa-check-circle"></i> MS Word - ডকুমেন্ট তৈরি, ফরম্যাটিং, মেইল মার্জ</li>
+                    <li><i class="fas fa-check-circle"></i> MS Excel - ডাটা এন্ট্রি, ফর্মুলা, চার্ট, পিভট টেবিল</li>
+                    <li><i class="fas fa-check-circle"></i> MS PowerPoint - প্রফেশনাল প্রেজেন্টেশন তৈরি</li>
+                    <li><i class="fas fa-check-circle"></i> রিয়েল লাইফ প্রজেক্ট - চালান, বেতন শীট, রেজাল্ট শীট</li>
+                    <li><i class="fas fa-check-circle"></i> চাকরির আবেদন, সিভি তৈরি, ইমেইল কমিউনিকেশন</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" onclick="downloadBrochure('basic-office')" class="download-btn">
+                    <i class="fas fa-download"></i> কোর্স আউটলাইন ডাউনলোড করুন (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ট্যাব 2: কোর্স মডিউল -->
+    <div id="modules" class="tab-content">
+        <!-- মডিউল 1: কম্পিউটার বেসিক + টাইপিং -->
+        <div class="module-card">
+            <div class="module-title">
+                <i class="fas fa-desktop"></i>
+                <span>মডিউল ১: কম্পিউটার বেসিক + টাইপিং (ক্লাস ০১-১২)</span>
+            </div>
+            <div class="class-grid">
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০১</span> কম্পিউটার বেসিক</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০২</span> ফাইল ও ফোল্ডার ম্যানেজমেন্ট</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০৩</span> ডিভাইস ও রিসাইকেল বিন</div>
+                <div class="class-item"><i class="fas fa-keyboard"></i><span class="class-number">ক্লাস ০৪</span> টাইপিং প্র্যাকটিস (হোম রো)</div>
+                <div class="class-item"><i class="fas fa-keyboard"></i><span class="class-number">ক্লাস ০৫</span> টাইপিং প্র্যাকটিস (টপ রো)</div>
+                <div class="class-item"><i class="fas fa-keyboard"></i><span class="class-number">ক্লাস ০৬</span> টাইপিং প্র্যাকটিস (বটম রো)</div>
+                <div class="class-item"><i class="fas fa-keyboard"></i><span class="class-number">ক্লাস ০৭-০৮</span> টাইপিং প্র্যাকটিস (সেন্টেন্স)</div>
+                <div class="class-item"><i class="fas fa-font"></i><span class="class-number">ক্লাস ০৯</span> ফন্ট ও কিবোর্ড সেটআপ</div>
+                <div class="class-item"><i class="fas fa-language"></i><span class="class-number">ক্লাস ১০</span> বাংলা টাইপিং প্র্যাকটিস</div>
+                <div class="class-item"><i class="fas fa-tools"></i><span class="class-number">ক্লাস ১১-১২</span> MS Word টুলস পরিচিতি</div>
+            </div>
+        </div>
+
+        <!-- মডিউল 2: MS Word বেসিক -->
+        <div class="module-card">
+            <div class="module-title">
+                <i class="fab fa-microsoft"></i>
+                <span>মডিউল ২: MS Word বেসিক (ক্লাস ১৩-২২)</span>
+            </div>
+            <ul class="topic-list">
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ১৩:</strong> Home Menu (Clipboard & Font)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ১৪:</strong> Home Menu (Paragraph)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ১৫:</strong> Home Menu (Editing), Insert (Pages, Table, Picture)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ১৬:</strong> Insert (Illustration, Links, Header & Footer)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ১৭:</strong> Insert (Text, Symbols)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ১৮:</strong> Design (Page Background), Layout (Page Setup)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ১৯:</strong> Shapes & SmartArt Project (Shape Design, Chalan Form)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২০:</strong> Print Setup (MS Word & PDF)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২১:</strong> Simple Document Project</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২২:</strong> Projects: Letter, Email, Application, CV/Resume</li>
+            </ul>
+        </div>
+
+        <!-- মডিউল 3: MS Excel বেসিক -->
+        <div class="module-card">
+            <div class="module-title">
+                <i class="fas fa-table"></i>
+                <span>মডিউল ৩: MS Excel বেসিক (ক্লাস ২৩-৩১)</span>
+            </div>
+            <ul class="topic-list">
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২৩:</strong> Excel পরিচিতি (Row, Column, Sheet, Cell, Sorting, Filtering, Conditional Formatting, Nested IF)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২৪:</strong> বেসিক ম্যাথ (যোগ, বিয়োগ, গুণ, ভাগ)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২৫:</strong> ফাংশন (SUM, RANK, AVERAGE) + Merit List Project</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২৬:</strong> Salary Sheet Project</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২৭:</strong> Advanced Salary Sheet</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২৮:</strong> Sorting, Filtering, Data Entry & Formatting</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ২৯:</strong> Result Sheet Project (MAX, MIN, IF)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ৩০:</strong> Electricity Bill Project (Nested IF)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ৩১:</strong> Data Validation + Practice & Test</li>
+            </ul>
+        </div>
+
+        <!-- মডিউল 4: PowerPoint + Access -->
+        <div class="module-card">
+            <div class="module-title">
+                <i class="fas fa-chalkboard"></i>
+                <span>মডিউল ৪: PowerPoint & Access (ক্লাস ৩২-৩৬)</span>
+            </div>
+            <ul class="topic-list">
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ৩২:</strong> Home Menu (Applied)</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ৩৩:</strong> Insert Menu</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ৩৪:</strong> Design & Animation</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ৩৫:</strong> Presentation Project</li>
+                <li><i class="fas fa-check"></i> <strong>ক্লাস ৩৬:</strong> MS Access (Basic Data Entry, Database)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ট্যাব 3: প্রজেক্ট সমূহ -->
+    <div id="projects" class="tab-content">
+        <div class="course-detail-card">
+            <h3 style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-tasks"></i> রিয়েল লাইফ প্রজেক্ট লিস্ট</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
+                <span class="project-badge"><i class="fas fa-file-alt"></i> চিঠি লেখা</span>
+                <span class="project-badge"><i class="fas fa-envelope"></i> ইমেইল</span>
+                <span class="project-badge"><i class="fas fa-file-signature"></i> দরখাস্ত</span>
+                <span class="project-badge"><i class="fas fa-blog"></i> ব্লগ লেখা</span>
+                <span class="project-badge"><i class="fas fa-globe"></i> ওয়েবসাইট কন্টেন্ট</span>
+                <span class="project-badge"><i class="fab fa-facebook"></i> সোশ্যাল মিডিয়া কন্টেন্ট</span>
+                <span class="project-badge"><i class="fas fa-file-alt"></i> প্রশ্নপত্র তৈরি</span>
+                <span class="project-badge"><i class="fas fa-id-card"></i> ফর্ম তৈরি</span>
+                <span class="project-badge"><i class="fas fa-file-pdf"></i> সিভি/রিজিউমি</span>
+                <span class="project-badge"><i class="fas fa-briefcase"></i> অনলাইন জব আবেদন</span>
+                <span class="project-badge"><i class="fas fa-trophy"></i> মেধাতালিকা</span>
+                <span class="project-badge"><i class="fas fa-money-bill"></i> বেতন শীট</span>
+                <span class="project-badge"><i class="fas fa-chart-line"></i> অ্যাডভান্সড বেতন শীট</span>
+                <span class="project-badge"><i class="fas fa-graduation-cap"></i> রেজাল্ট শীট</span>
+                <span class="project-badge"><i class="fas fa-bolt"></i> বিদ্যুৎ বিল</span>
+                <span class="project-badge"><i class="fas fa-chalkboard"></i> প্রেজেন্টেশন প্রজেক্ট</span>
+            </div>
+            
+            <div class="course-benefits">
+                <h3><i class="fas fa-certificate"></i> কোর্স শেষে যা পাবেন</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> সরকার অনুমোদিত সার্টিফিকেট</li>
+                    <li><i class="fas fa-check-circle"></i> ফ্রিল্যান্সিং ও চাকরির সুযোগ</li>
+                    <li><i class="fas fa-check-circle"></i> লাইভ প্রজেক্টে কাজ করার অভিজ্ঞতা</li>
+                    <li><i class="fas fa-check-circle"></i> ক্যারিয়ার গাইডলাইন ও সাপোর্ট</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ট্যাব 4: টাইপিং প্র্যাকটিস -->
+    <div id="typing" class="tab-content">
+        <div class="course-detail-card">
+            <h3 style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-keyboard"></i> ইংলিশ টাইপিং প্র্যাকটিস</h3>
+            <div class="typing-practice">
+                <p class="bangla-text"><strong>প্র্যাকটিস সেন্টেন্স:</strong><br>
+                "The quick brown fox jumps over the lazy dog."</p>
+                <p><i class="fas fa-info-circle"></i> <strong>নির্দেশনা:</strong> Font Size: 15-18, Pages: 2-10</p>
+            </div>
+
+            <h3 style="color: var(--primary); margin: 30px 0 20px;"><i class="fas fa-language"></i> বাংলা টাইপিং প্র্যাকটিস</h3>
+            
+            <!-- বাংলা কীবোর্ড লেআউট টেবিল -->
+            <div class="keyboard-table">
+                <table>
+                    <thead>
+                        <tr><th colspan="4">বাংলা কীবোর্ড লেআউট (বিজয়)</th></tr>
+                        <tr><th>বাংলা বর্ণ</th><th>কী</th><th>বাংলা বর্ণ</th><th>কী</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>অ</td><td>Shift + F</td><td>আ</td><td>G + F</td></tr>
+                        <tr><td>ই</td><td>G + D</td><td>ঈ</td><td>G + Shift + D</td></tr>
+                        <tr><td>উ</td><td>G + S</td><td>ঊ</td><td>G + Shift + S</td></tr>
+                        <tr><td>ঋ</td><td>G + A</td><td>এ</td><td>G + C</td></tr>
+                        <tr><td>ঐ</td><td>G + Shift + C</td><td>ও</td><td>X</td></tr>
+                        <tr><td>ঔ</td><td>G + Shift + X</td><td>া</td><td>F</td></tr>
+                        <tr><td>ি</td><td>D</td><td>ী</td><td>Shift + D</td></tr>
+                        <tr><td>ু</td><td>S</td><td>ূ</td><td>Shift + S</td></tr>
+                        <tr><td>ৃ</td><td>A</td><td>ে</td><td>C</td></tr>
+                        <tr><td>ৈ</td><td>Shift + C</td><td>ো</td><td>C + F</td></tr>
+                        <tr><td>ৌ</td><td>C + Shift + X</td><td>ক</td><td>J</td></tr>
+                        <tr><td>খ</td><td>Shift + J</td><td>গ</td><td>O</td></tr>
+                        <tr><td>ঘ</td><td>Shift + O</td><td>ঙ</td><td>Q</td></tr>
+                        <tr><td>চ</td><td>Y</td><td>ছ</td><td>Shift + Y</td></tr>
+                        <tr><td>জ</td><td>U</td><td>ঝ</td><td>Shift + U</td></tr>
+                        <tr><td>ট</td><td>T</td><td>ঠ</td><td>Shift + T</td></tr>
+                        <tr><td>ড</td><td>E</td><td>ঢ</td><td>Shift + E</td></tr>
+                        <tr><td>ত</td><td>K</td><td>থ</td><td>Shift + K</td></tr>
+                        <tr><td>দ</td><td>L</td><td>ধ</td><td>Shift + L</td></tr>
+                        <tr><td>ন</td><td>B</td><td>প</td><td>R</td></tr>
+                        <tr><td>ফ</td><td>Shift + R</td><td>ব</td><td>H</td></tr>
+                        <tr><td>ভ</td><td>Shift + H</td><td>ম</td><td>M</td></tr>
+                        <tr><td>য</td><td>W</td><td>র</td><td>V</td></tr>
+                        <tr><td>ল</td><td>Shift + V</td><td>শ</td><td>Shift + M</td></tr>
+                        <tr><td>ষ</td><td>Shift + N</td><td>স</td><td>N</td></tr>
+                        <tr><td>হ</td><td>I</td><td>ড়</td><td>P</td></tr>
+                        <tr><td>ঢ়</td><td>Shift + P</td><td>য়</td><td>Shift + W</td></tr>
+                        <tr><td>ৎ</td><td>\</td><td>ং</td><td>Shift + Q</td></tr>
+                        <tr><td>ঁ</td><td>Shift + 7</td><td>ঃ</td><td>Shift + ;</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- বাংলা টাইপিং প্র্যাকটিস সেন্টেন্স -->
+            <h3 style="color: var(--primary); margin: 30px 0 15px;"><i class="fas fa-pen-fancy"></i> বাংলা টাইপিং প্র্যাকটিস সেন্টেন্স</h3>
+            
+            <div class="typing-practice">
+                <p class="bangla-text"><strong>📝 সহজ (Easy):</strong><br>
+                আমি শক্ত মানুষ হতে চাই। সে ভক্তি করে নামাজ পড়ে। আমাদের স্কুল খুব সুন্দর। ত্রুটি হলে ঠিক করতে হবে। দ্বারটি বন্ধ করে দাও। সম্ভব হলে আজই কাজ শেষ করো। শ্রেণীতে সবাই মনোযোগী। স্তর অনুযায়ী পড়া শিখো। স্কেল দিয়ে দাগ টানো। হ্রদটি খুব গভীর।</p>
+                
+                <p class="bangla-text"><strong>📝 মাঝারি (Medium):</strong><br>
+                জ্ঞান অর্জন করা প্রতিটি মানুষের কর্তব্য। প্রতিষ্ঠানে নিয়ম মেনে চলা প্রয়োজন। ভক্ত ব্যক্তি সবসময় সত্য কথা বলে। ছাত্ররা শ্রদ্ধার সাথে শিক্ষকের কথা শোনে। আমাদের দেশে অনেক সুন্দর হ্রদ আছে। ত্রুটি বুঝে সংশোধন করা ভালো অভ্যাস। স্কুলে প্রতিদিন নতুন কিছু শেখা যায়। সম্ভব হলে সময়মতো কাজ শেষ করো। দ্বন্দ্ব এড়িয়ে শান্তিতে থাকতে হবে। শক্ত মনোবল থাকলে সফলতা আসবেই।</p>
+                
+                <p class="bangla-text"><strong>📝 কঠিন (Hard):</strong><br>
+                প্রত্যেক ছাত্রকে দায়িত্বশীল ও অধ্যবসায়ী হতে হবে। শিক্ষকের নির্দেশনা মেনে চলা খুবই গুরুত্বপূর্ণ। জ্ঞান ও দক্ষতা অর্জনের মাধ্যমে সফলতা পাওয়া যায়। আমাদের প্রতিষ্ঠান শিক্ষার্থীদের উন্নত ভবিষ্যৎ গড়ে তোলে। সত্য ও ন্যায়ের পথে চললে জীবনে শ্রেষ্ঠ হওয়া যায়। কঠোর পরিশ্রম ছাড়া কোনো কিছু অর্জন করা সম্ভব নয়। ছাত্রজীবনে শৃঙ্খলা বজায় রাখা অত্যন্ত প্রয়োজন। প্রযুক্তির সঠিক ব্যবহার আমাদের জীবনকে সহজ করে। আত্মবিশ্বাস থাকলে যেকোনো বাধা অতিক্রম করা যায়। অধ্যয়ন ছাড়া জীবনে উন্নতি করা কঠিন।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ব্যাক টু হোম বাটন -->
+    <div style="text-align: center; margin: 40px 0;">
+        <a href="../index.html" class="btn-primary" style="text-decoration: none;"><i class="fas fa-arrow-left"></i> সকল কোর্স দেখুন</a>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>ক্রিয়েটিভ এআই ইন্সটিটিউট</h3>
+                <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+                <div class="social-links-footer">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>দ্রুত লিংক</h3>
+                <p><a href="../index.html">হোম</a></p>
+                <p><a href="../certificate.html">সার্টিফিকেট ভেরিফাই</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>যোগাযোগ</h3>
+                <p><i class="fas fa-phone"></i> +8801679338669</p>
+                <p><i class="fas fa-envelope"></i> creativeaibd01@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> ফরিদগঞ্জ, চাঁদপুর</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© ২০২৬ ক্রিয়েটিভ এআই ইন্সটিটিউট — সর্বস্বত্ব সংরক্ষিত</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script>
+    function showTab(tabId) {
+        // সব ট্যাব কন্টেন্ট লুকান
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        // সব বাটন থেকে active ক্লাস রিমুভ করুন
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        // সিলেক্টেড ট্যাব দেখান
+        document.getElementById(tabId).classList.add('active');
+        // সিলেক্টেড বাটন active করুন
+        event.target.classList.add('active');
+    }
+</script>
+</body>
+</html>

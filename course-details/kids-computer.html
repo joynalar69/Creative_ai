@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কিডস কম্পিউটার কোর্স | Creative AI Institute</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .phase-card {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .phase-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(46,46,255,0.15);
+        }
+        .phase-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .phase-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .phase-title i {
+            font-size: 2rem;
+        }
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .week-card {
+            background: var(--primary-light);
+            border-radius: 16px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        .week-card:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .week-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 8px;
+        }
+        .week-card:hover .week-title {
+            border-bottom-color: rgba(255,255,255,0.3);
+        }
+        .class-list {
+            list-style: none;
+            padding: 0;
+        }
+        .class-list li {
+            padding: 6px 0;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .class-list li i {
+            font-size: 12px;
+            color: var(--primary);
+        }
+        .week-card:hover .class-list li i {
+            color: white;
+        }
+        .info-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .info-item {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 22px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-tab {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.3s;
+            border-radius: 40px;
+            font-size: 1rem;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: var(--primary-light);
+            border-radius: 20px;
+        }
+        .stat-card i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .stat-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        .project-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            margin: 5px 6px 0 0;
+            transition: all 0.3s;
+        }
+        .project-badge:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .motto {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding: 10px;
+            background: var(--primary-light);
+            border-radius: 50px;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo" onclick="location.href='../index.html'">
+                <img src="../image/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/50/2E2EFF/white?text=CAI'">
+                <div class="logo-text">
+                    <h1>ক্রিয়েটিভ এআই ইন্সটিটিউট</h1>
+                    <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html"><i class="fas fa-home"></i> হোম</a>
+                <a href="../certificate.html"><i class="fas fa-certificate"></i> সার্টিফিকেট</a>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fas fa-book-open"></i> সকল কোর্স <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="kids-computer.html"><i class="fas fa-child"></i> কিডস কম্পিউটার</a>
+                        <a href="basic-office.html"><i class="fas fa-laptop"></i> বেসিক অফিস</a>
+                        <a href="professional-office.html"><i class="fas fa-chart-line"></i> প্রফেশনাল অফিস</a>
+                        <a href="graphic-design.html"><i class="fas fa-palette"></i> গ্রাফিক্স ডিজাইন</a>
+                        <a href="web-development.html"><i class="fas fa-code"></i> ওয়েব ডিজাইন ও ডেভেলপমেন্ট</a>
+                        <a href="digital-marketing.html"><i class="fas fa-bullhorn"></i> ডিজিটাল মার্কেটিং</a>
+                        <a href="professional-ai.html"><i class="fas fa-robot"></i> প্রফেশনাল এ.আই</a>
+                        <a href="academic-coaching.html"><i class="fas fa-chalkboard-user"></i> একাডেমিক কোচিং</a>
+                        <a href="hsc-ict.html"><i class="fas fa-book"></i> এইচএসসি আইসিটি</a>
+                        <a href="hand-writing.html"><i class="fas fa-pen-fancy"></i> হ্যান্ড রাইটিং</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- কোর্স হিরো সেকশন -->
+<section class="course-detail-hero">
+    <div class="container">
+        <h1><i class="fas fa-child"></i> কিডস কম্পিউটার কোর্স</h1>
+        <div class="motto">🎯 "Basic → Creative → Real Skills"</div>
+        <p>আপনার সন্তানকে দিন প্রযুক্তির জ্ঞান - কম্পিউটার বেসিক থেকে ক্রিয়েটিভ ডিজাইন, এআই, ওয়েব ডিজাইন ও ডিজিটাল মার্কেটিং</p>
+        <div class="info-bar">
+            <div class="info-item"><i class="fas fa-clock"></i> মেয়াদ: ১২ মাস</div>
+            <div class="info-item"><i class="fas fa-calendar-alt"></i> মোট ক্লাস: ৯৬টি</div>
+            <div class="info-item"><i class="fas fa-trophy"></i> লেভেল: বিগিনার থেকে অ্যাডভান্সড</div>
+            <div class="info-item"><i class="fas fa-certificate"></i> সার্টিফিকেট: সরকার অনুমোদিত</div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- স্ট্যাটিস্টিকস -->
+    <div class="stat-grid">
+        <div class="stat-card"><i class="fas fa-laptop"></i><h3>৭টি</h3><p>ফেজ</p></div>
+        <div class="stat-card"><i class="fas fa-clock"></i><h3>৯৬টি</h3><p>ক্লাস</p></div>
+        <div class="stat-card"><i class="fas fa-project-diagram"></i><h3>২৭+</h3><p>প্রজেক্ট</p></div>
+        <div class="stat-card"><i class="fas fa-star"></i><h3>৫টি</h3><p>স্কিল সেক্টর</p></div>
+    </div>
+
+    <!-- ট্যাব সেকশন -->
+    <div class="section-tab">
+        <button class="tab-btn active" onclick="showTab('overview')"><i class="fas fa-info-circle"></i> কোর্স ওভারভিউ</button>
+        <button class="tab-btn" onclick="showTab('phases')"><i class="fas fa-layer-group"></i> ৭টি ফেজ</button>
+        <button class="tab-btn" onclick="showTab('projects')"><i class="fas fa-project-diagram"></i> প্রজেক্ট সমূহ</button>
+        <button class="tab-btn" onclick="showTab('certificate')"><i class="fas fa-certificate"></i> সার্টিফিকেট ও সুবিধা</button>
+    </div>
+
+    <!-- ট্যাব 1: কোর্স ওভারভিউ -->
+    <div id="overview" class="tab-content active">
+        <div class="course-detail-card">
+            <div class="course-overview">
+                <div class="overview-item"><i class="fas fa-clock"></i><h4>কোর্স ডিউরেশন</h4><p>১২ মাস</p></div>
+                <div class="overview-item"><i class="fas fa-chalkboard"></i><h4>মোট ক্লাস</h4><p>৯৬টি</p></div>
+                <div class="overview-item"><i class="fas fa-clock"></i><h4>ক্লাস সময়</h4><p>সকাল ১০টা - ১২টা / বিকাল ৪টা - ৬টা</p></div>
+                <div class="overview-item"><i class="fas fa-certificate"></i><h4>সার্টিফিকেট</h4><p>সরকার অনুমোদিত</p></div>
+            </div>
+            
+            <div class="course-benefits">
+                <h3><i class="fas fa-gem"></i> এই কোর্সে যা শিখবে আপনার সন্তান</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> কম্পিউটার বেসিক থেকে শুরু করে ক্রিয়েটিভ ডিজাইন</li>
+                    <li><i class="fas fa-check-circle"></i> ইংলিশ ও বাংলা টাইপিং - দ্রুত ও নির্ভুল</li>
+                    <li><i class="fas fa-check-circle"></i> MS Office - Word, Excel, PowerPoint (প্রফেশনাল)</li>
+                    <li><i class="fas fa-check-circle"></i> ক্যানভা ডিজাইন - পোস্টার, ব্যানার, লোগো, সোশ্যাল মিডিয়া পোস্ট</li>
+                    <li><i class="fas fa-check-circle"></i> এআই টুলস ব্যবহার - ইমেজ জেনারেশন, ভয়েস ক্রিয়েশন, ভিডিও এডিটিং</li>
+                    <li><i class="fas fa-check-circle"></i> ওয়েব ডিজাইন - HTML, CSS দিয়ে ওয়েবসাইট তৈরি</li>
+                    <li><i class="fas fa-check-circle"></i> ডিজিটাল মার্কেটিং - ফেসবুক পেজ, ইউটিউব চ্যানেল সেটআপ</li>
+                    <li><i class="fas fa-check-circle"></i> ফ্রিল্যান্সিং ও পোর্টফোলিও ডেভেলপমেন্ট</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" onclick="downloadBrochure('kids-computer')" class="download-btn">
+                    <i class="fas fa-download"></i> কোর্স আউটলাইন ডাউনলোড করুন (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ট্যাব 2: ৭টি ফেজ -->
+    <div id="phases" class="tab-content">
+        <!-- ফেজ 1: বেসিক কম্পিউটার ও টাইপিং -->
+        <div class="phase-card">
+            <div class="phase-badge">ফেজ ১</div>
+            <div class="phase-title">
+                <i class="fas fa-desktop"></i>
+                <span>বেসিক কম্পিউটার ও টাইপিং</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">সপ্তাহ ১-৮ | ক্লাস ০১-১৬</p>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-calendar-week"></i> সপ্তাহ ১-২</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০১: কম্পিউটার পরিচিতি</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০২: হার্ডওয়্যার vs সফটওয়্যার</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০৩: স্টার্ট/শাটডাউন ও কেয়ার</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০৪: মাউস প্র্যাকটিস</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-calendar-week"></i> সপ্তাহ ৩-৪</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০৫: কীবোর্ড লেআউট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০৬: টাইপিং প্র্যাকটিস</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০৭: বিজয় কীবোর্ড পরিচিতি</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০৮: টাইপিং স্পিড প্র্যাকটিস</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-calendar-week"></i> সপ্তাহ ৫-৬</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ০৯: উইন্ডোজ ডেস্কটপ</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১০: প্রোগ্রাম ওপেন/ক্লোজ</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১১: ফাইল ও ফোল্ডার তৈরি</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১২: কপি, পেস্ট, ডিলিট</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-calendar-week"></i> সপ্তাহ ৭-৮</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১৩: ইন্টারনেট বেসিক</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১৪: গুগল সার্চ প্র্যাকটিস</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১৫: টাইপিং স্পিড টেস্ট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১৬: ছোট প্রজেক্ট</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ফেজ 2: MS Office -->
+        <div class="phase-card">
+            <div class="phase-badge">ফেজ ২</div>
+            <div class="phase-title">
+                <i class="fab fa-microsoft"></i>
+                <span>MS Office Mastery</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">সপ্তাহ ৯-১৬ | ক্লাস ১৭-৩২</p>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-file-word"></i> সপ্তাহ ৯-১২ (Word)</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১৭: MS Word ইন্টারফেস</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১৮: প্যারাগ্রাফ টাইপিং</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ১৯: ফন্ট, সাইজ, কালার</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২০: ইমেজ ও ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২১: সিভি রাইটিং</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২২: অ্যাপ্লিকেশন রাইটিং</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২৩: রিপোর্ট/অ্যাসাইনমেন্ট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২৪: পেজ সেটআপ ও প্রিন্ট</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-table"></i> সপ্তাহ ১৩-১৪ (Excel)</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২৫: এক্সেল বেসিক</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২৬: টেবিল ক্রিয়েশন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২৭: ফর্মুলা (SUM, AVERAGE)</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২৮: মার্কশীট</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-chalkboard"></i> সপ্তাহ ১৫-১৬ (PowerPoint)</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ২৯: পাওয়ারপয়েন্ট বেসিক</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩০: স্লাইড ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩১: অ্যানিমেশন ও ট্রানজিশন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩২: প্রেজেন্টেশন প্রজেক্ট</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ফেজ 3: ক্রিয়েটিভ ডিজাইন -->
+        <div class="phase-card">
+            <div class="phase-badge">ফেজ ৩</div>
+            <div class="phase-title">
+                <i class="fas fa-palette"></i>
+                <span>ক্রিয়েটিভ ডিজাইন</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">সপ্তাহ ১৭-২৪ | ক্লাস ৩৩-৪৮</p>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-paintbrush"></i> সপ্তাহ ১৭-১৮</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩৩: ডিজাইন বেসিক</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩৪: ক্যানভা ইন্টারফেস</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩৫: পোস্টার ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩৬: ব্যানার ডিজাইন</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fab fa-facebook"></i> সপ্তাহ ১৯-২০</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩৭: ফেসবুক পোস্ট ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩৮: ইনস্টাগ্রাম পোস্ট ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৩৯: ইউটিউব থাম্বনেইল</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪০: লোগো ডিজাইন বেসিক</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-id-card"></i> সপ্তাহ ২১-২২</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪১: আইডি কার্ড ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪২: সার্টিফিকেট ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪৩: ফ্লায়ার ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪৪: ব্রোশিওর বেসিক</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-folder-open"></i> সপ্তাহ ২৩-২৪</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪৫: ক্রিয়েটিভ প্রজেক্ট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪৬: ডিজাইন প্র্যাকটিস</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪৭: পোর্টফোলিও কালেকশন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৪৮: ডিজাইন ফাইনাল টাস্ক</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 15px; background: var(--primary-light); padding: 10px; border-radius: 12px;">
+                <strong>অতিরিক্ত:</strong> ক্লাস ৪৯: AI পরিচিতি | ক্লাস ৫০: AI ইমেজ জেনারেশন | ক্লাস ৫১: ক্রিয়েটিভ ইলাস্ট্রেশন
+            </div>
+        </div>
+
+        <!-- ফেজ 4: AI ক্রিয়েটিভিটি -->
+        <div class="phase-card">
+            <div class="phase-badge">ফেজ ৪</div>
+            <div class="phase-title">
+                <i class="fas fa-robot"></i>
+                <span>AI ক্রিয়েটিভিটি</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">সপ্তাহ ২৫-৩২ | ক্লাস ৫২-৬৪</p>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-brain"></i> সপ্তাহ ২৫-২৬</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৫২: AI ডিজাইন আইডিয়া</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৫৩: AI ফটো এডিটিং</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-image"></i> সপ্তাহ ২৭-২৮</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৫৪: ব্যাকগ্রাউন্ড রিমুভাল</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৫৫: AI এনহ্যান্সমেন্ট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৫৬: ইমেজ অ্যানিমেশন</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-microphone"></i> সপ্তাহ ২৯-৩০</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৫৭: AI ভয়েস ক্রিয়েশন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৫৮: স্টোরি ভয়েস</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৫৯: AI ভিডিও টুলস</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬০: শর্ট ভিডিও ক্রিয়েশন</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-video"></i> সপ্তাহ ৩১-৩২</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬১: থাম্বনেইল (AI)</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬২: স্ক্রিপ্ট রাইটিং</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬৩: ভিডিও প্রজেক্ট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬৪: AI ক্রিয়েটিভ প্রজেক্ট</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ফেজ 5: ওয়েব ডিজাইন ও অ্যাপ বেসিক -->
+        <div class="phase-card">
+            <div class="phase-badge">ফেজ ৫</div>
+            <div class="phase-title">
+                <i class="fas fa-code"></i>
+                <span>ওয়েব ডিজাইন ও অ্যাপ বেসিক</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">সপ্তাহ ৩৩-৪০ | ক্লাস ৬৫-৮০</p>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title"><i class="fab fa-html5"></i> সপ্তাহ ৩৩-৩৪</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬৫: ওয়েবসাইট বেসিক</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬৬: HTML পরিচিতি</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬৭: ওয়েব পেজ তৈরি</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬৮: CSS বেসিক</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-laptop-code"></i> সপ্তাহ ৩৫-৩৬</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৬৯: ওয়েবসাইট ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭০: রেসপনসিভ ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭১: পার্সোনাল ওয়েবসাইট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭২: ওয়েবসাইট পাবলিশিং</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-robot"></i> সপ্তাহ ৩৭-৩৮</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭৩: AI ওয়েবসাইট বিল্ডার</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭৪: পোর্টফোলিও ওয়েবসাইট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭৫: ল্যান্ডিং পেজ</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭৬: ওয়েবসাইট প্রজেক্ট</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-mobile-alt"></i> সপ্তাহ ৩৯-৪০</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭৭: অ্যাপ কনসেপ্ট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭৮: ওয়েবসাইট টু অ্যাপ</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৭৯: সিম্পল UI ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮০: মিনি অ্যাপ প্রজেক্ট</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ফেজ 6: ডিজিটাল মার্কেটিং -->
+        <div class="phase-card">
+            <div class="phase-badge">ফেজ ৬</div>
+            <div class="phase-title">
+                <i class="fas fa-chart-line"></i>
+                <span>ডিজিটাল মার্কেটিং</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">সপ্তাহ ৪১-৪২ | ক্লাস ৮১-৮৮</p>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title"><i class="fab fa-facebook"></i> সপ্তাহ ৪১</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮১: ফেসবুক পেজ ক্রিয়েশন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮২: কাভার ও লোগো ডিজাইন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮৩: ইউটিউব চ্যানেল সেটআপ</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮৪: থাম্বনেইল ও কন্টেন্ট আইডিয়া</li>
+                    </ul>
+                </div>
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-search"></i> সপ্তাহ ৪২</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮৫: এসইও বেসিক</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮৬: কন্টেন্ট রাইটিং</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮৭: বেসিক মার্কেটিং স্ট্রাটেজি</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮৮: প্র্যাকটিস প্রজেক্ট</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ফেজ 7: AI স্মার্ট স্কিলস ও ফাইনাল -->
+        <div class="phase-card">
+            <div class="phase-badge">ফেজ ৭</div>
+            <div class="phase-title">
+                <i class="fas fa-star"></i>
+                <span>AI স্মার্ট স্কিলস ও ফাইনাল প্রজেক্ট</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">সপ্তাহ ৪৩-৪৮ | ক্লাস ৮৯-৯৬</p>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title"><i class="fas fa-graduation-cap"></i> সপ্তাহ ৪৩-৪৮</div>
+                    <ul class="class-list">
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৮৯: AI ফর স্টাডি</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৯০: AI রাইটিং</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৯১: ফ্রিল্যান্সিং পরিচিতি</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৯২: পোর্টফোলিও ডেভেলপমেন্ট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৯৩: ফাইনাল প্রজেক্ট শুরু</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৯৪: প্রজেক্ট ডেভেলপমেন্ট</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৯৫: প্রজেক্ট প্রেজেন্টেশন</li>
+                        <li><i class="fas fa-play-circle"></i> ক্লাস ৯৬: সার্টিফিকেট ও ইভ্যালুয়েশন</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ট্যাব 3: প্রজেক্ট সমূহ -->
+    <div id="projects" class="tab-content">
+        <div class="course-detail-card">
+            <h3 style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-tasks"></i> প্রজেক্ট লিস্ট (২৭+ প্রজেক্ট)</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
+                <span class="project-badge">⌨️ টাইপিং স্পিড টেস্ট</span>
+                <span class="project-badge">📁 ফাইল ও ফোল্ডার অর্গানাইজেশন</span>
+                <span class="project-badge">🌐 সেফ ইন্টারনেট ব্রাউজিং</span>
+                <span class="project-badge">📄 ডিজিটাল সিভি (স্টুডেন্ট প্রোফাইল)</span>
+                <span class="project-badge">📝 অ্যাপ্লিকেশন রাইটিং</span>
+                <span class="project-badge">📊 মার্কশীট (এক্সেল)</span>
+                <span class="project-badge">🎨 পাওয়ারপয়েন্ট প্রেজেন্টেশন</span>
+                <span class="project-badge">🖼️ পোস্টার ডিজাইন</span>
+                <span class="project-badge">📢 ব্যানার ডিজাইন</span>
+                <span class="project-badge">📱 সোশ্যাল মিডিয়া পোস্ট ডিজাইন</span>
+                <span class="project-badge">🔖 লোগো ও ব্র্যান্ড আইডেন্টিটি</span>
+                <span class="project-badge">📁 পার্সোনাল ডিজাইন পোর্টফোলিও</span>
+                <span class="project-badge">🤖 এআই ইমেজ ক্রিয়েশন</span>
+                <span class="project-badge">🎨 এআই ফটো এডিটিং</span>
+                <span class="project-badge">🎙️ এআই ভয়েস স্টোরি</span>
+                <span class="project-badge">🎬 এআই শর্ট ভিডিও</span>
+                <span class="project-badge">🌐 পার্সোনাল ওয়েবসাইট</span>
+                <span class="project-badge">📄 সিম্পল HTML ওয়েব পেজ</span>
+                <span class="project-badge">💼 পোর্টফোলিও ওয়েবসাইট</span>
+                <span class="project-badge">📱 মিনি অ্যাপ UI ডিজাইন</span>
+                <span class="project-badge">📘 ফেসবুক পেজ সেটআপ</span>
+                <span class="project-badge">🎬 ইউটিউব চ্যানেল ব্র্যান্ডিং</span>
+                <span class="project-badge">✍️ এসইও কন্টেন্ট রাইটিং</span>
+                <span class="project-badge">📊 ডিজিটাল মার্কেটিং ক্যাম্পেইন</span>
+                <span class="project-badge">🧠 এআই স্টাডি হেল্পার</span>
+                <span class="project-badge">💼 ফ্রিল্যান্সিং প্রোফাইল</span>
+                <span class="project-badge">🎯 ফাইনাল ডিজিটাল স্কিলস পোর্টফোলিও</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ট্যাব 4: সার্টিফিকেট ও সুবিধা -->
+    <div id="certificate" class="tab-content">
+        <div class="course-detail-card">
+            <div class="course-benefits">
+                <h3><i class="fas fa-certificate"></i> কোর্স শেষে যা পাবে আপনার সন্তান</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> সরকার অনুমোদিত সার্টিফিকেট</li>
+                    <li><i class="fas fa-check-circle"></i> সম্পূর্ণ ডিজিটাল পোর্টফোলিও (ওয়েবসাইট + ডিজাইন)</li>
+                    <li><i class="fas fa-check-circle"></i> কম্পিউটার, ডিজাইন, এআই, ওয়েব, মার্কেটিং - ৫টি স্কিল</li>
+                    <li><i class="fas fa-check-circle"></i> ফ্রিল্যান্সিং মার্কেটপ্লেসে একাউন্ট তৈরি</li>
+                    <li><i class="fas fa-check-circle"></i> লাইভ প্রজেক্টে কাজ করার অভিজ্ঞতা</li>
+                    <li><i class="fas fa-check-circle"></i> ক্যারিয়ার গাইডলাইন ও সাপোর্ট</li>
+                    <li><i class="fas fa-check-circle"></i> পার্সোনাল ব্র্যান্ডিং ও আত্মবিশ্বাস</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ব্যাক টু হোম বাটন -->
+    <div style="text-align: center; margin: 40px 0;">
+        <a href="../index.html" class="btn-primary" style="text-decoration: none;"><i class="fas fa-arrow-left"></i> সকল কোর্স দেখুন</a>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>ক্রিয়েটিভ এআই ইন্সটিটিউট</h3>
+                <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+                <div class="social-links-footer">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>দ্রুত লিংক</h3>
+                <p><a href="../index.html">হোম</a></p>
+                <p><a href="../certificate.html">সার্টিফিকেট ভেরিফাই</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>যোগাযোগ</h3>
+                <p><i class="fas fa-phone"></i> +8801679338669</p>
+                <p><i class="fas fa-envelope"></i> creativeaibd01@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> ফরিদগঞ্জ, চাঁদপুর</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© ২০২৬ ক্রিয়েটিভ এআই ইন্সটিটিউট — সর্বস্বত্ব সংরক্ষিত</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script>
+    function showTab(tabId) {
+        var tabs = document.querySelectorAll('.tab-content');
+        for(var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('active');
+        }
+        var btns = document.querySelectorAll('.tab-btn');
+        for(var i = 0; i < btns.length; i++) {
+            btns[i].classList.remove('active');
+        }
+        var selectedTab = document.getElementById(tabId);
+        if(selectedTab) {
+            selectedTab.classList.add('active');
+        }
+        if(event && event.target) {
+            event.target.classList.add('active');
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification | Creative AI Institute</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo" onclick="location.href='index.html'">
+                <img src="image/logo.png" alt="Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>ক্রিয়েটিভ এআই ইন্সটিটিউট</h1>
+                    <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html"><i class="fas fa-home"></i> হোম</a>
+                <a href="certificate.html" class="active"><i class="fas fa-certificate"></i> সার্টিফিকেট</a>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fas fa-book-open"></i> সকল কোর্স <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="course-details/kids-computer.html"><i class="fas fa-child"></i> কিডস কম্পিউটার</a>
+                        <a href="course-details/basic-office.html"><i class="fas fa-laptop"></i> বেসিক অফিস</a>
+                        <a href="course-details/professional-office.html"><i class="fas fa-chart-line"></i> প্রফেশনাল অফিস</a>
+                        <a href="course-details/graphic-design.html"><i class="fas fa-palette"></i> গ্রাফিক্স ডিজাইন</a>
+                        <a href="course-details/web-development.html"><i class="fas fa-code"></i> ওয়েব ডিজাইন ও ডেভেলপমেন্ট</a>
+                        <a href="course-details/digital-marketing.html"><i class="fas fa-bullhorn"></i> ডিজিটাল মার্কেটিং</a>
+                        <a href="course-details/professional-ai.html"><i class="fas fa-robot"></i> প্রফেশনাল এ.আই</a>
+                        <a href="course-details/academic-coaching.html"><i class="fas fa-chalkboard-user"></i> একাডেমিক কোচিং</a>
+                        <a href="course-details/hsc-ict.html"><i class="fas fa-book"></i> এইচএসসি আইসিটি</a>
+                        <a href="course-details/hand-writing.html"><i class="fas fa-pen-fancy"></i> হ্যান্ড রাইটিং</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-logo">
+            <img src="image/logo.png" alt="Creative AI Institute">
+        </div>
+        <h1><i class="fas fa-certificate"></i> Certificate Verification Portal</h1>
+        <p>আপনার সার্টিফিকেট যাচাই করুন দ্রুত ও নির্ভরযোগ্যভাবে</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="card">
+        <h2 style="margin-bottom: 24px; color: var(--primary);"><i class="fas fa-search"></i> সার্টিফিকেট অনুসন্ধান করুন</h2>
+        
+        <div id="alertMessage" class="alert"></div>
+        
+        <form id="searchForm">
+            <div class="form-group">
+                <label><i class="fas fa-book"></i> কোর্স নির্বাচন করুন *</label>
+                <select id="course" required>
+                    <option value="">-- সিলেক্ট করুন --</option>
+                    <option value="কিডস কম্পিউটার">🧒 কিডস কম্পিউটার</option>
+                    <option value="বেসিক অফিস">💻 বেসিক অফিস কোর্স</option>
+                    <option value="প্রফেশনাল অফিস">📊 প্রফেশনাল অফিস কোর্স</option>
+                    <option value="প্রফেশনাল গ্রাফিক্স ডিজাইন">🎨 প্রফেশনাল গ্রাফিক্স ডিজাইন</option>
+                    <option value="ওয়েব ডিজাইন এন্ড ডেভেলপমেন্ট">🌐 ওয়েব ডিজাইন এন্ড ডেভেলপমেন্ট</option>
+                    <option value="ডিজিটাল মার্কেটিং">📱 ডিজিটাল মার্কেটিং</option>
+                    <option value="প্রফেশনাল এ.আই কোর্স">🤖 প্রফেশনাল এ.আই কোর্স</option>
+                    <option value="একাডেমিক কোচিং">🏫 একাডেমিক কোচিং</option>
+                    <option value="এইচএসসি আইসিটি">📘 এইচএসসি আইসিটি</option>
+                    <option value="হ্যান্ড রাইটিং কোর্স">✍️ হ্যান্ড রাইটিং কোর্স</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label><i class="fas fa-barcode"></i> সার্টিফিকেট সিরিয়াল নম্বর *</label>
+                <input type="text" id="serialNo" placeholder="যেমন: CAI-2024-001" required>
+            </div>
+            
+            <div class="form-group">
+                <label><i class="fas fa-calendar"></i> পাশের বছর *</label>
+                <input type="text" id="year" placeholder="যেমন: 2024" required>
+            </div>
+            
+            <button type="submit" class="btn-primary" style="width: 100%;">
+                <i class="fas fa-search"></i> সার্টিফিকেট ভেরিফাই করুন
+            </button>
+        </form>
+    </div>
+    
+    <div id="certificateResult" class="certificate-result">
+        <div class="certificate-header">
+            <h2 style="color: var(--primary);">✅ বৈধ সার্টিফিকেট</h2>
+            <p><i class="fas fa-check-circle"></i> নিচের তথ্যগুলো যাচাই করুন</p>
+        </div>
+        <div class="certificate-details" id="certificateDetails"></div>
+        <div style="text-align: center; margin-top: 24px;">
+            <button onclick="window.print()" class="btn-primary" style="background: var(--secondary);">
+                <i class="fas fa-print"></i> ডাউনলোড / প্রিন্ট
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>ক্রিয়েটিভ এআই ইন্সটিটিউট</h3>
+                <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+            </div>
+            <div class="footer-col">
+                <h3>দ্রুত লিংক</h3>
+                <p><a href="index.html">হোম</a></p>
+                <p><a href="certificate.html">সার্টিফিকেট ভেরিফাই</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>যোগাযোগ</h3>
+                <p><i class="fas fa-phone"></i> +8801679338669</p>
+                <p><i class="fas fa-envelope"></i> creativeaibd01@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© ২০২৬ ক্রিয়েটিভ এআই ইন্সটিটিউট</p>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

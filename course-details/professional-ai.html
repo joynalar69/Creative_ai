@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ক্রিয়েটিভ এআই মাস্টার কোর্স | Creative AI Institute</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .module-card {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .module-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(46,46,255,0.15);
+        }
+        .module-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .module-title i {
+            font-size: 2rem;
+        }
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .class-item {
+            background: var(--primary-light);
+            padding: 10px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .class-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .class-item i {
+            font-size: 14px;
+            color: var(--primary);
+        }
+        .class-item:hover i {
+            color: white;
+        }
+        .class-number {
+            font-weight: 700;
+            min-width: 65px;
+        }
+        .info-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .info-item {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 22px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-tab {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.3s;
+            border-radius: 40px;
+            font-size: 1rem;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: var(--primary-light);
+            border-radius: 20px;
+        }
+        .stat-card i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .stat-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        .final-output {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+            text-align: center;
+            border: 2px dashed var(--primary);
+        }
+        .final-output h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        .output-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .output-item {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .output-item i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+        .motto {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding: 10px;
+            background: var(--primary-light);
+            border-radius: 50px;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo" onclick="location.href='../index.html'">
+                <img src="../image/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/50/2E2EFF/white?text=CAI'">
+                <div class="logo-text">
+                    <h1>প্রফেশনাল এআই ইন্সটিটিউট</h1>
+                    <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="../index.html"><i class="fas fa-home"></i> হোম</a>
+                <a href="../certificate.html"><i class="fas fa-certificate"></i> সার্টিফিকেট</a>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fas fa-book-open"></i> সকল কোর্স <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="kids-computer.html"><i class="fas fa-child"></i> কিডস কম্পিউটার</a>
+                        <a href="basic-office.html"><i class="fas fa-laptop"></i> বেসিক অফিস</a>
+                        <a href="professional-office.html"><i class="fas fa-chart-line"></i> প্রফেশনাল অফিস</a>
+                        <a href="graphic-design.html"><i class="fas fa-palette"></i> গ্রাফিক্স ডিজাইন</a>
+                        <a href="web-development.html"><i class="fas fa-code"></i> ওয়েব ডিজাইন ও ডেভেলপমেন্ট</a>
+                        <a href="digital-marketing.html"><i class="fas fa-bullhorn"></i> ডিজিটাল মার্কেটিং</a>
+                        <a href="professional-ai.html"><i class="fas fa-robot"></i> প্রফেশনাল এ.আই</a>
+                        <a href="academic-coaching.html"><i class="fas fa-chalkboard-user"></i> একাডেমিক কোচিং</a>
+                        <a href="hsc-ict.html"><i class="fas fa-book"></i> এইচএসসি আইসিটি</a>
+                        <a href="hand-writing.html"><i class="fas fa-pen-fancy"></i> হ্যান্ড রাইটিং</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- কোর্স হিরো সেকশন -->
+<section class="course-detail-hero">
+    <div class="container">
+        <h1><i class="fas fa-robot"></i> প্রফেশনাল এআই মাস্টার কোর্স</h1>
+        <div class="motto">🧠 "AI Powered Future Skills"</div>
+        <p>MS Office + AI Graphic Design + AI Video Creation + AI Website + Digital Marketing + Freelancing</p>
+        <div class="info-bar">
+            <div class="info-item"><i class="fas fa-clock"></i> মেয়াদ: ৩ মাস</div>
+            <div class="info-item"><i class="fas fa-calendar-alt"></i> মোট ক্লাস: ৩৬টি</div>
+            <div class="info-item"><i class="fas fa-trophy"></i> লেভেল: মাস্টার</div>
+            <div class="info-item"><i class="fas fa-certificate"></i> সার্টিফিকেট: সরকার অনুমোদিত</div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- স্ট্যাটিস্টিকস -->
+    <div class="stat-grid">
+        <div class="stat-card"><i class="fas fa-brain"></i><h3>৬টি</h3><p>মডিউল</p></div>
+        <div class="stat-card"><i class="fas fa-clock"></i><h3>৩৬টি</h3><p>ক্লাস</p></div>
+        <div class="stat-card"><i class="fas fa-tasks"></i><h3>১টি</h3><p>ফাইনাল প্রজেক্ট</p></div>
+        <div class="stat-card"><i class="fas fa-rocket"></i><h3>৫টি</h3><p>স্কিল সেক্টর</p></div>
+    </div>
+
+    <!-- ট্যাব সেকশন -->
+    <div class="section-tab">
+        <button class="tab-btn active" onclick="showTab('overview')"><i class="fas fa-info-circle"></i> কোর্স ওভারভিউ</button>
+        <button class="tab-btn" onclick="showTab('modules')"><i class="fas fa-layer-group"></i> ৬টি মডিউল</button>
+        <button class="tab-btn" onclick="showTab('final')"><i class="fas fa-star"></i> ফাইনাল প্রজেক্ট</button>
+        <button class="tab-btn" onclick="showTab('certificate')"><i class="fas fa-certificate"></i> সার্টিফিকেট ও সুবিধা</button>
+    </div>
+
+    <!-- ট্যাব 1: কোর্স ওভারভিউ -->
+    <div id="overview" class="tab-content active">
+        <div class="course-detail-card">
+            <div class="course-overview">
+                <div class="overview-item"><i class="fas fa-clock"></i><h4>কোর্স ডিউরেশন</h4><p>৩ মাস</p></div>
+                <div class="overview-item"><i class="fas fa-chalkboard"></i><h4>মোট ক্লাস</h4><p>৩৬টি</p></div>
+                <div class="overview-item"><i class="fas fa-clock"></i><h4>ক্লাস সময়</h4><p>সকাল ১০টা - ১২টা / সন্ধ্যা ৭টা - ৯টা</p></div>
+                <div class="overview-item"><i class="fas fa-certificate"></i><h4>সার্টিফিকেট</h4><p>সরকার অনুমোদিত</p></div>
+            </div>
+            
+            <div class="course-benefits">
+                <h3><i class="fas fa-gem"></i> এই কোর্সে যা শিখবেন</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> MS Office - Word, Excel, PowerPoint (প্রফেশনাল লেভেল)</li>
+                    <li><i class="fas fa-check-circle"></i> AI গ্রাফিক ডিজাইন - লোগো, পোস্টার, ব্যানার, ব্র্যান্ডিং</li>
+                    <li><i class="fas fa-check-circle"></i> AI ভয়েস, ইমেজ ও ভিডিও ক্রিয়েশন</li>
+                    <li><i class="fas fa-check-circle"></i> AI ওয়েবসাইট বিল্ডার - নো কোডিং ওয়েবসাইট</li>
+                    <li><i class="fas fa-check-circle"></i> AI চ্যাটবট ইন্টিগ্রেশন ও ওয়েব অ্যাপ</li>
+                    <li><i class="fas fa-check-circle"></i> ডিজিটাল মার্কেটিং - SEO, ফেসবুক অ্যাডস, গুগল অ্যাডস</li>
+                    <li><i class="fas fa-check-circle"></i> ইউটিউব এসইও ও ভাইরাল কন্টেন্ট স্ট্রাটেজি</li>
+                    <li><i class="fas fa-check-circle"></i> ফ্রিল্যান্সিং মার্কেটপ্লেস সেটআপ ও ক্লায়েন্ট হ্যান্ডলিং</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" onclick="downloadBrochure('professional-ai')" class="download-btn">
+                    <i class="fas fa-download"></i> কোর্স আউটলাইন ডাউনলোড করুন (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ট্যাব 2: ৬টি মডিউল -->
+    <div id="modules" class="tab-content">
+        <!-- মডিউল 1: ডিজিটাল ফাউন্ডেশন -->
+        <div class="module-card">
+            <div class="module-badge">মডিউল ১</div>
+            <div class="module-title">
+                <i class="fas fa-laptop-code"></i>
+                <span>ডিজিটাল ফাউন্ডেশন (MS Office + প্রোডাক্টিভিটি)</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">ক্লাস ০১-০৯</p>
+            <div class="class-grid">
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০১</span> ক্রিয়েটিভ AI পরিচিতি + ফিউচার স্কিলস</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০২</span> MS Word বেসিক (ডকুমেন্ট, ফরম্যাটিং, লেআউট)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০৩</span> সিভি, অ্যাপ্লিকেশন, চিঠি লেখা (Word)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০৪</span> থিসিস, রিপোর্ট রাইটিং + প্রফেশনাল ফরম্যাটিং</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০৫</span> MS Excel বেসিক (সেল, টেবিল, ডাটা এন্ট্রি)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০৬</span> Excel ফর্মুলা (SUM, AVERAGE, IF, বেসিক লজিক)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০৭</span> ডাটা অর্গানাইজেশন + সিম্পল অ্যানালাইসিস</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০৮</span> MS PowerPoint বেসিক (স্লাইড, ডিজাইন, প্রেজেন্টেশন)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ০৯</span> প্রফেশনাল প্রেজেন্টেশন ডিজাইন (পিচ ডেক, বিজনেস আইডিয়া)</div>
+            </div>
+        </div>
+
+        <!-- মডিউল 2: AI গ্রাফিক ডিজাইন -->
+        <div class="module-card">
+            <div class="module-badge">মডিউল ২</div>
+            <div class="module-title">
+                <i class="fas fa-palette"></i>
+                <span>AI গ্রাফিক ডিজাইন ও ক্রিয়েটিভিটি</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">ক্লাস ১০-১৪</p>
+            <div class="class-grid">
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১০</span> গ্রাফিক ডিজাইন বেসিক (কালার, লেআউট, টাইপোগ্রাফি)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১১</span> AI টুলস ফর ডিজাইন (লোগো, পোস্টার, ব্যানার আইডিয়া)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১২</span> AI ইমেজ জেনারেশন (ক্রিয়েটিভ ইলাস্ট্রেশন + আর্ট)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১৩</span> ফটোশপ + AI ওয়ার্কফ্লো (ফাস্ট এডিটিং সিস্টেম)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১৪</span> ব্র্যান্ডিং ডিজাইন (লোগো, আইডেন্টিটি, কালার সিস্টেম)</div>
+            </div>
+        </div>
+
+        <!-- মডিউল 3: AI ভয়েস, ইমেজ ও ভিডিও -->
+        <div class="module-card">
+            <div class="module-badge">মডিউল ৩</div>
+            <div class="module-title">
+                <i class="fas fa-video"></i>
+                <span>AI ভয়েস, ইমেজ ও ভিডিও ক্রিয়েশন</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">ক্লাস ১৫-২০</p>
+            <div class="class-grid">
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১৫</span> AI ভয়েস জেনারেশন (ভয়েস ওভার, অডিও ক্রিয়েশন)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১৬</span> AI ফটো এডিটিং (এনহ্যান্স, রিটাচ, ব্যাকগ্রাউন্ড ফিক্স)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১৭</span> AI ইমেজ অ্যানিমেশন বেসিক</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১৮</span> AI ভিডিও ক্রিয়েশন টুলস ওভারভিউ</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ১৯</span> AI শর্ট ভিডিও (রিলস, শর্টস, অ্যাডস কন্টেন্ট)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২০</span> AI স্টোরি + স্ক্রিপ্ট টু ভিডিও কনভার্সন</div>
+            </div>
+        </div>
+
+        <!-- মডিউল 4: ওয়েব ও অ্যাপ ক্রিয়েশন -->
+        <div class="module-card">
+            <div class="module-badge">মডিউল ৪</div>
+            <div class="module-title">
+                <i class="fas fa-globe"></i>
+                <span>ওয়েব ও অ্যাপ ক্রিয়েশন with AI</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">ক্লাস ২১-২৬</p>
+            <div class="class-grid">
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২১</span> ওয়েবসাইট বেসিক (হাউ ওয়েবসাইট ওয়ার্কস)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২২</span> AI ওয়েবসাইট বিল্ডার টুলস (নো কোডিং ওয়েবসাইট)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২৩</span> পোর্টফোলিও ওয়েবসাইট ক্রিয়েশন with AI</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২৪</span> বিজনেস ওয়েবসাইট + ল্যান্ডিং পেজ with AI</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২৫</span> ওয়েব অ্যাপ আইডিয়া + AI ডেভেলপমেন্ট ওয়ার্কফ্লো</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২৬</span> AI চ্যাটবট ইন্টিগ্রেশন in ওয়েবসাইট</div>
+            </div>
+        </div>
+
+        <!-- মডিউল 5: ডিজিটাল মার্কেটিং -->
+        <div class="module-card">
+            <div class="module-badge">মডিউল ৫</div>
+            <div class="module-title">
+                <i class="fas fa-chart-line"></i>
+                <span>ডিজিটাল মার্কেটিং with AI</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">ক্লাস ২৭-৩৪</p>
+            <div class="class-grid">
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২৭</span> ডিজিটাল মার্কেটিং বেসিক + AI রোল</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২৮</span> কন্টেন্ট আইডিয়া জেনারেশন with AI</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ২৯</span> এসইও বেসিক + AI কিওয়ার্ড রিসার্চ</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ৩০</span> ফেসবুক পেজ + কন্টেন্ট স্ট্রাটেজি with AI</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ৩১</span> ফেসবুক অ্যাডস আইডিয়া + ক্যাম্পেইন প্ল্যানিং with AI</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ৩২</span> গুগল অ্যাডস স্ট্রাটেজি with AI অপটিমাইজেশন</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ৩৩</span> ইউটিউব এসইও + টাইটেল + ডেসক্রিপশন with AI</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ৩৪</span> থাম্বনেইল + ভাইরাল কন্টেন্ট স্ট্রাটেজি</div>
+            </div>
+        </div>
+
+        <!-- মডিউল 6: ফ্রিল্যান্সিং -->
+        <div class="module-card">
+            <div class="module-badge">মডিউল ৬</div>
+            <div class="module-title">
+                <i class="fas fa-briefcase"></i>
+                <span>ফ্রিল্যান্সিং + রিয়েল প্রজেক্ট</span>
+            </div>
+            <p style="margin-bottom: 15px; color: var(--gray);">ক্লাস ৩৫-৩৬</p>
+            <div class="class-grid">
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ৩৫</span> ফ্রিল্যান্সিং মার্কেটপ্লেস সেটআপ (ফাইভার/আপওয়ার্ক)</div>
+                <div class="class-item"><i class="fas fa-play-circle"></i><span class="class-number">ক্লাস ৩৬</span> ফাইনাল প্রজেক্ট (কমপ্লিট AI বিজনেস সিস্টেম)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ট্যাব 3: ফাইনাল প্রজেক্ট -->
+    <div id="final" class="tab-content">
+        <div class="course-detail-card">
+            <h3 style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-star"></i> ফাইনাল প্রজেক্ট: কমপ্লিট AI বিজনেস সিস্টেম</h3>
+            
+            <div class="final-output">
+                <h4><i class="fas fa-trophy"></i> আপনি তৈরি করবেন একটি সম্পূর্ণ AI-পাওয়ার্ড বিজনেস সিস্টেম</h4>
+                <div class="output-items">
+                    <div class="output-item"><i class="fas fa-file-word"></i> ওয়ার্ড ডকুমেন্ট</div>
+                    <div class="output-item"><i class="fas fa-palette"></i> ডিজাইন</div>
+                    <div class="output-item"><i class="fas fa-video"></i> ভিডিও</div>
+                    <div class="output-item"><i class="fas fa-globe"></i> ওয়েবসাইট</div>
+                    <div class="output-item"><i class="fas fa-chart-line"></i> মার্কেটিং প্ল্যান</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <h4 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-list-check"></i> প্রজেক্টের অংশসমূহ:</h4>
+                <ul>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> <strong>ডকুমেন্টেশন:</strong> প্রজেক্ট প্রপোজাল, প্ল্যান, রিপোর্ট (MS Word)</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> <strong>ডিজাইন:</strong> লোগো, ব্যানার, সোশ্যাল মিডিয়া পোস্ট (AI টুলস)</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> <strong>ভিডিও:</strong> প্রোমোশনাল ভিডিও, টিউটোরিয়াল (AI ভিডিও টুলস)</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> <strong>ওয়েবসাইট:</strong> পোর্টফোলিও/বিজনেস ওয়েবসাইট (AI বিল্ডার)</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> <strong>মার্কেটিং প্ল্যান:</strong> SEO, সোশ্যাল মিডিয়া, অ্যাডস স্ট্রাটেজি</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--primary-light); padding: 20px; border-radius: 16px; margin-top: 25px;">
+                <h4 style="color: var(--primary);"><i class="fas fa-graduation-cap"></i> প্রেজেন্টেশন:</h4>
+                <p>প্রজেক্টটি ক্লাসে প্রেজেন্ট করতে হবে। সেরা প্রজেক্টের জন্য বিশেষ পুরস্কার!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ট্যাব 4: সার্টিফিকেট ও সুবিধা -->
+    <div id="certificate" class="tab-content">
+        <div class="course-detail-card">
+            <div class="course-benefits">
+                <h3><i class="fas fa-certificate"></i> কোর্স শেষে যা পাবেন</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> সরকার অনুমোদিত সার্টিফিকেট</li>
+                    <li><i class="fas fa-check-circle"></i> সম্পূর্ণ AI বিজনেস সিস্টেম পোর্টফোলিও</li>
+                    <li><i class="fas fa-check-circle"></i> MS Office, AI ডিজাইন, ভিডিও, ওয়েব, মার্কেটিং - ৫টি স্কিল</li>
+                    <li><i class="fas fa-check-circle"></i> ফ্রিল্যান্সিং মার্কেটপ্লেসে একাউন্ট তৈরি</li>
+                    <li><i class="fas fa-check-circle"></i> লাইভ প্রজেক্টে কাজ করার অভিজ্ঞতা</li>
+                    <li><i class="fas fa-check-circle"></i> ক্লায়েন্ট হ্যান্ডলিং ও প্রজেক্ট ম্যানেজমেন্ট</li>
+                    <li><i class="fas fa-check-circle"></i> ক্যারিয়ার গাইডলাইন ও জব প্লেসমেন্ট সাপোর্ট</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ব্যাক টু হোম বাটন -->
+    <div style="text-align: center; margin: 40px 0;">
+        <a href="../index.html" class="btn-primary" style="text-decoration: none;"><i class="fas fa-arrow-left"></i> সকল কোর্স দেখুন</a>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>ক্রিয়েটিভ এআই ইন্সটিটিউট</h3>
+                <p>ডিজিটাল দক্ষতা ও একাডেমিক উৎকর্ষের বিশ্বস্ত কেন্দ্র</p>
+                <div class="social-links-footer">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>দ্রুত লিংক</h3>
+                <p><a href="../index.html">হোম</a></p>
+                <p><a href="../certificate.html">সার্টিফিকেট ভেরিফাই</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>যোগাযোগ</h3>
+                <p><i class="fas fa-phone"></i> +8801679338669</p>
+                <p><i class="fas fa-envelope"></i> creativeaibd01@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> ফরিদগঞ্জ, চাঁদপুর</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© ২০২৬ ক্রিয়েটিভ এআই ইন্সটিটিউট — সর্বস্বত্ব সংরক্ষিত</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script>
+    function showTab(tabId) {
+        var tabs = document.querySelectorAll('.tab-content');
+        for(var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('active');
+        }
+        var btns = document.querySelectorAll('.tab-btn');
+        for(var i = 0; i < btns.length; i++) {
+            btns[i].classList.remove('active');
+        }
+        var selectedTab = document.getElementById(tabId);
+        if(selectedTab) {
+            selectedTab.classList.add('active');
+        }
+        if(event && event.target) {
+            event.target.classList.add('active');
+        }
+    }
+</script>
+</body>
+</html>
