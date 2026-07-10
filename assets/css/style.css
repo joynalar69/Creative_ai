@@ -27,7 +27,7 @@
 }
 
 body {
-    font-family: 'Kalpurush', 'Hind Siliguri', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: sans-serif;
     background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
     min-height: 100vh;
     color: var(--dark);
