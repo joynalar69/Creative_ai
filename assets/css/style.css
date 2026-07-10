@@ -1,13 +1,5 @@
 /* assets/css/style.css */
 
-/* কলপুরুষ ফন্ট - Bengali Font */
-@font-face {
-    font-family:'kalpurush'
-    src: url('https://raw.githubusercontent.com/joynal/kalpurush-font/main/Kalpurush.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 :root {
     /* ব্লু থিম কালার */
     --primary: #2E2EFF;
