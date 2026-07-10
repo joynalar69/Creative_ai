@@ -1,5 +1,5 @@
 /* assets/css/style.css */
-
+<link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
 :root {
     /* ব্লু থিম কালার */
     --primary: #2E2EFF;
@@ -27,7 +27,7 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'SolaimanLipi', sans-serif;
     background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
     min-height: 100vh;
     color: var(--dark);
